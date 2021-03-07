@@ -7,13 +7,18 @@ function mb_strrev( string $string, string $encoding = null ): string {
 	return implode( '', array_reverse( $chars ) );
 }
 
+// converting the output to string
+function format_toString( $value ) {
+	return implode( '<br>', $value );
+}
+
 // validation before outputting the top 10
-function top_10_validation( $values ) {
+function format_top_10_validation( $values ) {
 	if ( count( $values ) >= 10 ) {
-		return implode( '<br>', array_slice( $values, 0, 10 ) );
+		return array_slice( $values, 0, 10 );
 	}
 
-	return implode( '<br>', array_slice( $values, 0, count( $values ) ) );
+	return array_slice( $values, 0, count( $values ) );
 }
 
 // simple average calculation

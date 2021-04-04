@@ -1,6 +1,6 @@
 <?php
 
-require 'ItemController.php';
+require dirname( __DIR__ ) . '/Controller/ItemController.php';
 
 if ( isset( $_POST['submit'] ) ) {
 	$controller->create(
@@ -23,7 +23,7 @@ if ( isset( $_POST['submit'] ) ) {
         <input type="submit" name="submit" value="Submit">
     </form>
 
-    <a href="index.php">Back to home</a>
+    <a href="../index.php">Back to home</a>
 </div>
 <?php include 'templates/footer.php'; ?>
 

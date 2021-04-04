@@ -23,9 +23,8 @@ $conn = array(
 
 $en = EntityManager::create( $conn, $config );
 
-// init database here
 //try {
-//	$sql = file_get_contents( "module_4/data/init.sql" );
+//	$sql = file_get_contents( "module_4/Model/data/init.sql" );
 //	$en->getConnection()->executeQuery( $sql );
 //	echo "Database and table users created successfully.";
 //} catch ( \Doctrine\ORM\ORMException | \Doctrine\DBAL\Exception $error ) {

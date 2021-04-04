@@ -1,5 +1,5 @@
 <?php
-require 'ItemController.php';
+require dirname( __DIR__ ) . '/Controller/ItemController.php';
 
 if ( isset( $_POST['submit'] ) ) {
 	$controller->edit(
@@ -23,6 +23,6 @@ if ( isset( $_POST['submit'] ) ) {
             <input type="number" name="price" value="<?php echo $current_item->get_price(); ?>"/>
             <input type="submit" name="submit" value="Submit!">
         </form>
-        <div><a href="index.php">go back to list</a></div>
+        <div><a href="../index.php">go back to list</a></div>
     </div>
 <?php include 'templates/footer.php'; ?>

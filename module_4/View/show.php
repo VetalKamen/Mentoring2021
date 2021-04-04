@@ -11,5 +11,5 @@
         <p>Price:<?php echo $item->get_price(); ?></p>
 	<?php endif; ?>
 </div>
-<div><a href="index.php">go back to list</a></div>
+<div><a href="../index.php">go back to list</a></div>
 <?php include 'templates/footer.php'; ?>

@@ -1,13 +1,15 @@
 <?php
-require 'ItemController.php';
+require 'Controller/ItemController.php';
+require 'Controller/ItemSearchController.php';
+require 'Controller/ItemSortController.php';
 
 $items = $controller->list();
 
 if ( isset( $_GET['sort'] ) ) {
 	if ( $_GET['sort'] == 'name' ) {
-		$items = $controller->sortByName();
+		$items = $sortController->sortByName();
 	} elseif ( $_GET['sort'] == 'price' ) {
-		$items = $controller->sortByPrice();
+		$items = $sortController->sortByPrice();
 	}
 }
 $currentPage = isset( $_GET['page'] ) ? (int) $_GET['page'] : 1;
@@ -17,17 +19,16 @@ $pageCount = ceil( count( $items ) / $perPage );
 $items     = array_slice( $items, ( $currentPage - 1 ) * 5, 5 );
 
 if ( isset( $_POST['name'] ) ) {
-	$items = $controller->searchByName( $_POST['name'] );
+	$items = $searchController->searchByName( $_POST['name'] );
 }
 
 if ( ! empty( $_POST['id'] ) ) {
 	$item = $controller->find( $_POST['id'] );
 	$controller->delete( $item );
 }
-
 ?>
 
-<?php include 'templates/header.php'; ?>
+<?php include 'View/templates/header.php'; ?>
 <main>
     <form method="post">
         <input type="text" name="name" placeholder="enter name fo search"/>
@@ -56,7 +57,7 @@ if ( ! empty( $_POST['id'] ) ) {
                     <td><?php echo $item->get_description(); ?></td>
                     <td><?php echo $item->get_price(); ?></td>
                     <td>
-                        <form action="edit.php" method="post">
+                        <form action="View/edit.php" method="post">
                             <input name="id" hidden value="<?php echo $item->get_id() ?>"/>
                             <input type="submit" value="Edit"/>
                         </form>
@@ -81,8 +82,8 @@ if ( ! empty( $_POST['id'] ) ) {
 				<?php endfor; ?>
             </ul>
         </nav>
-        <a href="create.php" type="button">Create!</a>
+        <a href="View/create.php" type="button">Create!</a>
     </div>
 </main>
-<?php include "templates/footer.php"; ?>
+<?php include "View/templates/footer.php"; ?>
 

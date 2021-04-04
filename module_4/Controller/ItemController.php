@@ -1,9 +1,8 @@
 <?php
 
-require_once 'Item.php';
-require_once 'View.php';
-require 'common.php';
-require_once dirname( __DIR__ ) . '/bootstrap.php';
+require_once dirname( __DIR__ ) . '/Model/Item.php';
+require_once dirname( __DIR__ ) . '/View/View.php';
+require_once dirname( dirname( __DIR__ ) ) . '/bootstrap.php';
 
 class ItemController {
 	private $em;
@@ -60,37 +59,6 @@ class ItemController {
 		}
 		$view = new View( 'show' );
 		$view->assign( 'item', $item );
-	}
-
-	public function sortByName() {
-		$qb = $this->em->createQueryBuilder();
-
-		$qb->select( 'i' )
-		   ->from( 'Item', 'i' )
-		   ->OrderBy( 'i.name', 'ASC' );
-
-		return $qb->getQuery()->getResult();
-	}
-
-	public function sortByPrice() {
-		$qb = $this->em->createQueryBuilder();
-
-		$qb->select( 'i' )
-		   ->from( 'Item', 'i' )
-		   ->OrderBy( 'i.price', 'ASC' );
-
-		return $qb->getQuery()->getResult();
-	}
-
-	public function searchByName( $name ) {
-		$qb = $this->em->createQueryBuilder();
-
-		$qb->select( 'i' )
-		   ->from( 'Item', 'i' )
-		   ->where( 'i.name = :name' )
-		   ->setParameter( 'name', $name );
-
-		return $qb->getQuery()->getResult();
 	}
 }
 
